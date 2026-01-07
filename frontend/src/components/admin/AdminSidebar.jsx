@@ -10,7 +10,7 @@ const AdminSidebar = () => {
      }`;
 
   return (
-    <div className="w-16 h-screen bg-white shadow-lg p-2 flex flex-col items-center">
+    <div className="w-16 h-auto bg-white shadow-lg p-2 flex flex-col items-center">
       <h1 className="text-xs font-bold mb-6 font-mono">Admin</h1>
 
       <nav className="flex flex-col gap-3">

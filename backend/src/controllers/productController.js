@@ -20,7 +20,7 @@ const uploadBufferToCloudinary = (fileBuffer, folder = "products") => {
 
 export const createProduct = async (req, res) => {
   try {
-    const { title, description, price, category, units } = req.body;
+    const { title, description, price} = req.body;
 
     let imageUrls = [];
     if (req.files && req.files.length > 0) {
@@ -41,8 +41,6 @@ export const createProduct = async (req, res) => {
       title,
       description,
       price,
-      category,
-      units: Number(units),
       images: imageUrls,
     });
 
@@ -103,3 +101,4 @@ export const deleteProduct = async (req, res) => {
   await Product.findByIdAndDelete(req.params.id);
   res.json({ message: "Product deleted successfully" });
 };
+

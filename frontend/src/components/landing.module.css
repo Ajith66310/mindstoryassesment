@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Neucha&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+.landing {
+  font-family: "Host Grotesk";
+  position: relative;
+}
+
+/* Images inside landing */
+.landingImg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Hero Section */
+.landingHero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  padding: 1rem;
+  background-color: var(--base-100, #181717);
+}
+
+.landingHeroInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4rem;
+  overflow: hidden;
+}
+
+.landingHeroImg {
+  position: absolute;
+  width: 100%;
+  transform: scale(1.5);
+  will-change: transform;
+  filter: brightness(0.7);
+}
+
+.landingHeroContent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  color: var(--base-300, #f5f5f5);
+}
+
+.landingHeader h1 {
+  font-size: 12rem;
+  font-weight: 500;
+  letter-spacing: -0.25rem;
+  line-height: 1;
+}
+
+.landingHeroFooter {
+  position: absolute;
+  bottom:0px;
+  left: 0;
+  padding: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.landingHeroFooter h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  width: 25%;
+  color: rgb(255, 255, 255);
+}
+
+.landingHeroFooter p {
+  font-family: monospace;
+  width: 25%;
+  font-weight: 800;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-align: right;
+}
+
+/* Buttons */
+.landingContactBtn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.landingMenuBtn {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.landingBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0.25rem 0.25rem 1.5rem;
+  border-radius: 4rem;
+  background-color: var(--base-300, #f5f5f5);
+  color: var(--base-100, #181717);
+  will-change: transform;
+}
+
+.landingBtnIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--base-100, #181717);
+  color: var(--base-300, #f5f5f5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  border-radius: 100%;
+}
+
+.landingBtnLabel span {
+  font-size: 0.9rem;
+  font-weight: 450;
+  line-height: 1;
+}
+
+/* Preloader */
+.landingPreloaderProgress,
+.landingPreloaderMask,
+.landingPreloaderContent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  pointer-events: none;
+}
+
+.landingPreloaderProgress {
+  background-color: var(--base-200, #292725);
+  z-index: 1;
+  will-change: opacity;
+}
+
+.landingPreloaderProgressBar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 55%;
+  height: 100%;
+  background-color: var(--base-300, #f5f5f5);
+  transform-origin: left;
+  will-change: transform;
+}
+
+.landingPreloaderLogo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  mix-blend-mode: difference;
+  z-index: 2;
+}
+
+.landingPreloaderLogo h1 {
+  position: relative;
+  color: var(--base-300, #f5f5f5);
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.landingPreloaderMask {
+  background-color: var(--base-100, #181717);
+  mask: linear-gradient(var(--base-300, #f5f5f5), var(--base-300, #f5f5f5)), url('../assets/maskimg.svg') center/50% no-repeat;
+  mask-composite: subtract;
+  will-change: transform;
+  z-index: 1;
+}
+
+.landingPreloaderContent {
+  z-index: 2;
+}
+
+.landingPreloaderFooter {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  text-align: center;
+}
+
+.landingPreloaderFooter p {
+  color: var(--base-300, #f5f5f5);
+  opacity: 0.5;
+}
+
+/* SplitText animations */
+.landingLine,
+.landingChar {
+  position: relative;
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+  will-change: transform;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .landingHeroInner {
+    border-radius: 3rem;
+  }
+
+  .landingHeader h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    font-size: 4rem;
+    letter-spacing: 0;
+  }
+
+  .landingHeroFooter {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .landingHeroFooter h3,
+  .landingHeroFooter p {
+    width: 100%;
+    text-align: left;
+  }
+
+  .landingHeroFooter h3 {
+    font-size: 1.25rem;
+  }
+
+  .landingMenuBtn {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    transform: translateX(0%);
+  }
+
+  .landingPreloaderProgressBar {
+    left: 0%;
+    width: 100%;
+    transform: translateX(0%) scaleX(0);
+  }
+
+  .landingPreloaderLogo h1 {
+    font-size: 2rem;
+  }
+
+  .landingPreloaderMask {
+    mask: linear-gradient(var(--base-300, #f5f5f5), var(--base-300, #f5f5f5)), url('../assets/maskimg.svg') center/90% no-repeat;
+    mask-composite: subtract;
+  }
+
+  .landingPreloaderFooter {
+    width: 75%;
+  }
+}

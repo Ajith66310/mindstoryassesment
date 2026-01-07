@@ -16,7 +16,7 @@ const ManageProducts = () => {
     const res = await axios.get(
       `${import.meta.env.VITE_BACKENDURL}/api/products`
     );
-    setProducts(res.data);
+    setProducts(res.data.reverse());
   };
 
   useEffect(() => {
