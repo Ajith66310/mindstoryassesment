@@ -211,6 +211,12 @@
 
 /* Responsive */
 @media (max-width: 800px) {
+  .landingHero {
+  position: relative;
+  width: 100%;
+  height: 60svh;
+ 
+}
   .landingHeroInner {
     border-radius: 3rem;
   }
@@ -267,4 +273,14 @@
   .landingPreloaderFooter {
     width: 75%;
   }
+  
+  .landingHeroFooter {
+    display: none !important;
+  }
+  .landingPreloaderProgress,
+  .landingPreloaderMask,
+  .landingPreloaderContent {
+    display: none !important;
+  }
+
 }

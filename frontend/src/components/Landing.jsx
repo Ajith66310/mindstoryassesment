@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./landing.module.css";
 import images from "../assets/assest.js";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(SplitText);
-
-import { useEffect } from "react";
+// Ensure SplitText is handled (assuming it's globally available or imported)
+// gsap.registerPlugin(SplitText); 
 
 const Landing = ({ onAnimationComplete }) => {
   useEffect(() => {
+    // Only set long timeout if NOT on mobile
+    const duration = window.innerWidth <= 800 ? 500 : 6500;
     const timer = setTimeout(() => {
       onAnimationComplete();
-    }, 6500);
+    }, duration);
     return () => clearTimeout(timer);
   }, [onAnimationComplete]);
 
   useGSAP(() => {
+    // MODIFICATION: Check screen size to stop animations on small screens
+    if (window.innerWidth <= 800) {
+      onAnimationComplete();
+      return; 
+    }
+
     document.fonts.ready.then(() => {
       function createSplitTexts(elements) {
         const splits = {};
@@ -109,13 +116,12 @@ const Landing = ({ onAnimationComplete }) => {
   return (
     <div className="landing-container">
       <div className={styles.landing}>
+        {/* These elements are hidden via CSS on small screens */}
         <div className={styles.landingPreloaderProgress}>
           <div className={styles.landingPreloaderProgressBar}></div>
           <div className={styles.landingPreloaderLogo}><h1>FLOWYY</h1></div>
         </div>
-
         <div className={styles.landingPreloaderMask}></div>
-
         <div className={styles.landingPreloaderContent}>
           <div className={styles.landingPreloaderFooter}>
             <p>In the stillness of purpose, the greatest works are born.</p>
@@ -126,7 +132,7 @@ const Landing = ({ onAnimationComplete }) => {
           <section className={styles.landingHero}>
             <div className={styles.landingHeroInner}>
               <div className={styles.landingHeroImg}>
-                <img src={images.heroimg} alt="" className={styles.landingImg} />
+                <img src={images.heroimg} alt="Hero" className={styles.landingImg} />
               </div>
 
               <div className={styles.landingHeroContent}>
@@ -150,7 +156,8 @@ const Landing = ({ onAnimationComplete }) => {
 
                 <div className={styles.landingHeroFooter}>
                   <h3>Stop Chasing,<br />Start Flowing..</h3>
-                  <p>Flowyy powers your storefront with seamless inventory and checkout flows—removing the hurdles between your products and your customers’ doorsteps.</p>              </div>
+                  <p>Flowyy powers your storefront with seamless inventory and checkout flows—removing the hurdles between your products and your customers’ doorsteps.</p>
+                </div>
               </div>
             </div>
           </section>
