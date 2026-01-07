@@ -37,10 +37,10 @@ useEffect(() => {
   if (loading) return <Loader />;
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-22">
       <div className="flex justify-between items-end mb-8 border-b border-gray-100 pb-4">
         <div>
-          <h2 className="text-3xl font-extrabold text-gray-900">Latest Products</h2>
+          <h2 className="text-3xl  font-extrabold text-gray-900">Latest Products</h2>
           <p className="text-gray-500 mt-1">Our newest arrivals just for you</p>
         </div>
       </div>

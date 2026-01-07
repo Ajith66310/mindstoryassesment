@@ -12,7 +12,7 @@ const Landing = ({ onAnimationComplete }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onAnimationComplete();
-    }, 5000);
+    }, 6500);
     return () => clearTimeout(timer);
   }, [onAnimationComplete]);
 
@@ -40,7 +40,6 @@ const Landing = ({ onAnimationComplete }) => {
 
       const splits = createSplitTexts(splitElements);
 
-      // Reset positions
       gsap.set(splits.logoChars.chars, { x: "100%" });
       gsap.set(
         [
