@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FeaturedProducts from "../components/FeaturedProducts";
 import Landing from "../components/Landing";
 import LatestProducts from "../components/LatestProducts";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [isAnimating, setIsAnimating] = useState(true);
@@ -26,6 +27,7 @@ const Home = () => {
       <div style={{ visibility: isAnimating ? "hidden" : "visible", opacity: isAnimating ? 0 : 1, transition: "opacity 0.5s ease" }}>
         <LatestProducts />
         <FeaturedProducts />
+        <Footer/>
       </div>
     </>
   );

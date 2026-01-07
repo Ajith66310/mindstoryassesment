@@ -10,7 +10,7 @@ const ProductItem = ({ id, title, img, price, percentage, btnText }) => {
   const offerPrice = Math.round(numericPrice - (numericPrice * numericDiscount) / 100);
   const btn = btnText === "View" ? "View" : "Add to Cart";
 
-  // 2. Toggle function
+
   const handleLikeToggle = (e) => {
     e.stopPropagation(); 
     setIsLiked(!isLiked);
