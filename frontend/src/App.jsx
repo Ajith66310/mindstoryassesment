@@ -6,11 +6,11 @@ import AllProducts from './components/AllProducts.jsx';
 import ProductForm from "./components/admin/ProductForm.jsx";
 import AddProduct from "./pages/admin/AddProduct.jsx";
 import AdminLayout from "./components/admin/AdminLayout.jsx";
-
+import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-
+      <Toaster position="top-right" />
       <Routes>
 
         <Route path='/' element={<Home />} />

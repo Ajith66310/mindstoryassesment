@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Edit, Trash2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
@@ -13,10 +14,14 @@ const ManageProducts = () => {
   });
 
   const fetchProducts = async () => {
-    const res = await axios.get(
-      `${import.meta.env.VITE_BACKENDURL}/api/products`
-    );
-    setProducts(res.data.reverse());
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_BACKENDURL}/api/products`
+      );
+      setProducts(res.data.reverse());
+    } catch {
+      toast.error("Failed to fetch products");
+    }
   };
 
   useEffect(() => {
@@ -51,34 +56,47 @@ const ManageProducts = () => {
   };
 
   const handleSave = async (id) => {
-    await axios.put(
-      `${import.meta.env.VITE_BACKENDURL}/api/products/${id}`,
-      {
-        title: formData.title,
-        price: formData.price,
-        description: formData.description
-      }
-    );
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_BACKENDURL}/api/products/${id}`,
+        {
+          title: formData.title,
+          price: formData.price,
+          description: formData.description
+        }
+      );
 
-    await fetchProducts();
-
-    setEditingId(null);
-    setFormData({
-      title: "",
-      price: "",
-      description: "",
-      images: []
-    });
+      toast.success("Product updated");
+      fetchProducts();
+      handleCancelEdit();
+    } catch {
+      toast.error("Update failed");
+    }
   };
 
   const handleDelete = async (id) => {
-    if (!confirm("Delete this product?")) return;
-
-    await axios.delete(
-      `${import.meta.env.VITE_BACKENDURL}/api/products/${id}`
-    );
-
-    fetchProducts();
+    toast((t) => (
+      <div className="flex items-center gap-3">
+        <span>Delete this product?</span>
+        <button
+          onClick={async () => {
+            try {
+              await axios.delete(
+                `${import.meta.env.VITE_BACKENDURL}/api/products/${id}`
+              );
+              toast.dismiss(t.id);
+              toast.success("Product deleted");
+              fetchProducts();
+            } catch {
+              toast.error("Delete failed");
+            }
+          }}
+          className="bg-red-600 text-white px-3 py-1 rounded text-sm"
+        >
+          Delete
+        </button>
+      </div>
+    ));
   };
 
   const getImage = (product) => {
@@ -111,7 +129,6 @@ const ManageProducts = () => {
                   value={formData.title}
                   onChange={handleChange}
                   className="w-full p-2 border rounded"
-                  placeholder="Title"
                 />
 
                 <input
@@ -119,7 +136,6 @@ const ManageProducts = () => {
                   value={formData.price}
                   onChange={handleChange}
                   className="w-full p-2 border rounded"
-                  placeholder="Price"
                 />
 
                 <textarea
@@ -127,7 +143,6 @@ const ManageProducts = () => {
                   value={formData.description}
                   onChange={handleChange}
                   className="w-full p-2 border rounded"
-                  placeholder="Description"
                 />
 
                 <div className="flex gap-2">

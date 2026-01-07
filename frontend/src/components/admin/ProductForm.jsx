@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ImagePlus, X, Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const ProductForm = () => {
   const navigate = useNavigate();
@@ -41,34 +42,40 @@ const ProductForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (isSubmitting) return;
+  e.preventDefault();
+  if (isSubmitting) return;
 
-    setIsSubmitting(true);
+  setIsSubmitting(true);
 
-    try {
-      const data = new FormData();
-      data.append("title", formData.title);
-      data.append("price", formData.price);
-      data.append("description", formData.description);
+  try {
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("price", formData.price);
+    data.append("description", formData.description);
 
-      formData.images.forEach((img) => {
-        if (img instanceof File) data.append("images", img);
-      });
+    formData.images.forEach((img) => {
+      if (img instanceof File) data.append("images", img);
+    });
 
-      await axios.post(
-        `${import.meta.env.VITE_BACKENDURL}/api/products`,
-        data
-      );
+    await axios.post(
+      `${import.meta.env.VITE_BACKENDURL}/api/products`,
+      data
+    );
 
-      navigate("/admin/manage-products");
-    } catch (error) {
-      console.error("Creation failed:", error);
-      alert("Failed to add product. Please check your connection.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    toast.success("Product created successfully");
+      setFormData({
+      title: "",
+      price: "",
+      description: "",
+      images: ["", "", "", ""]
+    });
+  } catch (error) {
+    toast.error("Failed to add product");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-start justify-center bg-white px-6 py-10">
